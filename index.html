@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  </head>
+
+    <body >
+        <div id="done"></div>
+    </body>
+
+	<script type="text/javascript">
+        var vid = document.createElement("video");
+        vid.autoplay = false;
+        vid.loop = false;
+        vid.style.display = "none";
+        vid.addEventListener("loadeddata", function()
+        {
+            setTimeout(function()
+            {
+                var canvas = document.createElement("canvas");
+                canvas.width = vid.videoWidth;
+                canvas.height = vid.videoHeight;
+                document.getElementById("done").innerHTML = "";
+                document.getElementById("done").appendChild(canvas);
+                var ctx = canvas.getContext("2d");
+                ctx.drawImage(vid, 0, 0);
+            });
+        }, false);
+        var source = document.createElement("source");
+        source.src = "effevo_v2.mp4";
+        source.type = "video/mp4";
+        vid.appendChild(source);
+        document.body.appendChild(vid);
+    </script>
+</html>
